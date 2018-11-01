@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://DoomGuy_Character.tscn" type="PackedScene" id=1]
+
+[node name="DoomGuy_Character" parent="." instance=ExtResource( 1 )]
+

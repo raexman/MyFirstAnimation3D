@@ -1,0 +1,316 @@
+[gd_scene load_steps=38 format=2]
+
+[ext_resource path="res://MixamoBaseRig.tscn" type="PackedScene" id=1]
+[ext_resource path="res://characters/doomguy/vanguard_MeshMesh.mesh" type="ArrayMesh" id=2]
+[ext_resource path="res://characters/doomguy/standing/idle.anim" type="Animation" id=3]
+[ext_resource path="res://characters/doomguy/jumping/jump_down.anim" type="Animation" id=4]
+[ext_resource path="res://characters/doomguy/jumping/jump_loop.anim" type="Animation" id=5]
+[ext_resource path="res://characters/doomguy/jumping/jump_up.anim" type="Animation" id=6]
+[ext_resource path="res://characters/doomguy/standing/standing_firing_rifle.anim" type="Animation" id=7]
+[ext_resource path="res://characters/doomguy/strafing/strafe_left.anim" type="Animation" id=8]
+[ext_resource path="res://characters/doomguy/strafing/strafe_right.anim" type="Animation" id=9]
+[ext_resource path="res://characters/doomguy/walking/walk_backward.anim" type="Animation" id=10]
+[ext_resource path="res://characters/doomguy/walking/walk_forward.anim" type="Animation" id=11]
+[ext_resource path="res://characters/doomguy/walking/walking_firing_rifle.anim" type="Animation" id=12]
+[ext_resource path="res://characters/doomguy/WalkingStrafingBS2D.tres" type="AnimationNodeBlendSpace2D" id=13]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = ""
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+
+filter_enabled = false
+filters = [  ]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+
+filter_enabled = false
+filters = [  ]
+animation = "jump_down"
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+
+filter_enabled = false
+filters = [  ]
+animation = "jump_loop"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+
+filter_enabled = false
+filters = [  ]
+animation = "jump_up"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+
+switch_mode = 0
+auto_advance = false
+advance_condition = "$[\"jump\"]==true"
+xfade_time = 0.0
+priority = 1
+disabled = false
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+
+switch_mode = 2
+auto_advance = true
+advance_condition = ""
+xfade_time = 0.0
+priority = 1
+disabled = false
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+
+switch_mode = 2
+auto_advance = true
+advance_condition = ""
+xfade_time = 0.0
+priority = 1
+disabled = false
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+
+switch_mode = 0
+auto_advance = false
+advance_condition = ""
+xfade_time = 0.0
+priority = 1
+disabled = false
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+
+switch_mode = 0
+auto_advance = false
+advance_condition = ""
+xfade_time = 0.0
+priority = 1
+disabled = false
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+
+switch_mode = 0
+auto_advance = false
+advance_condition = "jump==false"
+xfade_time = 0.0
+priority = 1
+disabled = false
+
+[sub_resource type="AnimationNodeStateMachine" id=12]
+
+states/idle/node = SubResource( 2 )
+states/idle/position = Vector2( 135, 130 )
+states/jump_land/node = SubResource( 3 )
+states/jump_land/position = Vector2( 390, 230 )
+states/jump_loop/node = SubResource( 4 )
+states/jump_loop/position = Vector2( 390, 130 )
+states/jump_start/node = SubResource( 5 )
+states/jump_start/position = Vector2( 390, 24 )
+states/walking_strafing/node = ExtResource( 13 )
+states/walking_strafing/position = Vector2( 135, -66 )
+transitions = [ "idle", "jump_start", SubResource( 6 ), "jump_start", "jump_loop", SubResource( 7 ), "jump_land", "idle", SubResource( 8 ), "idle", "walking_strafing", SubResource( 9 ), "walking_strafing", "idle", SubResource( 10 ), "jump_loop", "jump_land", SubResource( 11 ) ]
+start_node = ""
+end_node = ""
+graph_offset = Vector2( -143, -234 )
+
+[sub_resource type="AnimationNodeOneShot" id=13]
+
+filter_enabled = false
+filters = [  ]
+fadein_time = 0.25
+fadeout_time = 0.25
+autorestart = false
+autorestart_delay = 1.0
+autorestart_random_delay = 0.0
+sync = true
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+
+filter_enabled = false
+filters = [  ]
+animation = "walking_firing_rifle"
+
+[sub_resource type="GDScript" id=15]
+
+script/source = ""
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+
+filter_enabled = false
+filters = [  ]
+animation = "idle"
+script = SubResource( 15 )
+_sections_unfolded = [ "Resource", "Script" ]
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+
+filter_enabled = false
+filters = [  ]
+animation = "jump_down"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+
+filter_enabled = false
+filters = [  ]
+animation = "jump_loop"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+
+filter_enabled = false
+filters = [  ]
+animation = "jump_up"
+
+[sub_resource type="AnimationNodeBlend2" id=20]
+
+filter_enabled = true
+filters = [ "Skeleton:Head", "Skeleton:Hips", "Skeleton:LeftArm", "Skeleton:LeftForeArm", "Skeleton:LeftHand", "Skeleton:LeftHandIndex1", "Skeleton:LeftHandIndex2", "Skeleton:LeftHandIndex3", "Skeleton:LeftHandMiddle1", "Skeleton:LeftHandMiddle2", "Skeleton:LeftHandMiddle3", "Skeleton:LeftHandPinky1", "Skeleton:LeftHandPinky2", "Skeleton:LeftHandPinky3", "Skeleton:LeftHandRing1", "Skeleton:LeftHandRing2", "Skeleton:LeftHandRing3", "Skeleton:LeftHandThumb1", "Skeleton:LeftHandThumb2", "Skeleton:LeftHandThumb3", "Skeleton:LeftShoulder", "Skeleton:Neck", "Skeleton:RightArm", "Skeleton:RightForeArm", "Skeleton:RightHand", "Skeleton:RightHandIndex1", "Skeleton:RightHandIndex2", "Skeleton:RightHandIndex3", "Skeleton:RightHandMiddle1", "Skeleton:RightHandMiddle2", "Skeleton:RightHandMiddle3", "Skeleton:RightHandPinky1", "Skeleton:RightHandPinky2", "Skeleton:RightHandPinky3", "Skeleton:RightHandRing1", "Skeleton:RightHandRing2", "Skeleton:RightHandRing3", "Skeleton:RightHandThumb1", "Skeleton:RightHandThumb2", "Skeleton:RightHandThumb3", "Skeleton:RightShoulder", "Skeleton:Spine1", "Skeleton:Spine2" ]
+sync = false
+
+[sub_resource type="AnimationNodeTransition" id=21]
+
+input_count = 5
+xfade_time = 0.25
+input_0/name = "idle"
+input_0/auto_advance = false
+input_1/name = "walking"
+input_1/auto_advance = false
+input_2/name = "jump_start"
+input_2/auto_advance = true
+input_3/name = "jump_loop"
+input_3/auto_advance = false
+input_4/name = "jump_land"
+input_4/auto_advance = false
+_sections_unfolded = [ "Resource", "input_0", "input_1", "input_2", "input_3", "input_4" ]
+
+[sub_resource type="AnimationNodeBlendTree" id=22]
+
+graph_offset = Vector2( 233, -124.5 )
+nodes/MovementStateMachine/node = SubResource( 12 )
+nodes/MovementStateMachine/position = Vector2( 540, 20 )
+nodes/OneShot/node = SubResource( 13 )
+nodes/OneShot/position = Vector2( 980, -100 )
+nodes/aiming/node = SubResource( 14 )
+nodes/aiming/position = Vector2( 600, 500 )
+nodes/idle/node = SubResource( 16 )
+nodes/idle/position = Vector2( 200, -80 )
+nodes/jump_land/node = SubResource( 17 )
+nodes/jump_land/position = Vector2( 200, 440 )
+nodes/jump_loop/node = SubResource( 18 )
+nodes/jump_loop/position = Vector2( 200, 320 )
+nodes/jump_up/node = SubResource( 19 )
+nodes/jump_up/position = Vector2( 200, 200 )
+nodes/output/position = Vector2( 1140, 260 )
+nodes/shooting/node = SubResource( 20 )
+nodes/shooting/position = Vector2( 920, 300 )
+nodes/state/node = SubResource( 21 )
+nodes/state/position = Vector2( 600, 240 )
+nodes/walking_blend/node = ExtResource( 13 )
+nodes/walking_blend/position = Vector2( 200, 40 )
+node_connections = [ "shooting", 0, "MovementStateMachine", "shooting", 1, "aiming", "output", 0, "shooting", "state", 0, "idle", "state", 1, "walking_blend", "state", 2, "jump_up", "state", 3, "jump_loop", "state", 4, "jump_land" ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
+
+resource_local_to_scene = true
+
+[sub_resource type="CapsuleShape" id=24]
+
+margin = 0.04
+radius = 0.5
+height = 1.0
+
+[node name="KinematicBody" type="KinematicBody"]
+input_ray_pickable = true
+input_capture_on_drag = false
+collision_layer = 1
+collision_mask = 1
+move_lock_x = false
+move_lock_y = false
+move_lock_z = false
+collision/safe_margin = 0.001
+
+[node name="Skeleton" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+transform = Transform( 0.83867, 0, -0.544639, 0, 1, 0, 0.544639, 0, 0.83867, 0, 0, 0 )
+_sections_unfolded = [ "Pause", "Transform", "Visibility", "bones/0", "bones/64" ]
+
+[node name="MeshInstance" type="MeshInstance" parent="Skeleton"]
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = ExtResource( 2 )
+skeleton = NodePath("..")
+material/0 = null
+
+[node name="Gun" type="Spatial" parent="Skeleton/MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.256779, 1.25952, 0.395406 )
+script = SubResource( 1 )
+
+[node name="Player" type="AnimationPlayer" parent="."]
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 1.0
+playback_speed = 1.0
+anims/idle = ExtResource( 3 )
+anims/jump_down = ExtResource( 4 )
+anims/jump_loop = ExtResource( 5 )
+anims/jump_up = ExtResource( 6 )
+anims/standing_firing_rifle = ExtResource( 7 )
+anims/strafe_left = ExtResource( 8 )
+anims/strafe_right = ExtResource( 9 )
+anims/walk_backward = ExtResource( 10 )
+anims/walk_forward = ExtResource( 11 )
+anims/walking_firing_rifle = ExtResource( 12 )
+blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 22 )
+anim_player = NodePath("../Player")
+active = true
+process_mode = 0
+root_motion_track = NodePath("")
+parameters/MovementStateMachine/playback = SubResource( 23 )
+"parameters/MovementStateMachine/conditions/$[\"jump\"]==true" = false
+"parameters/MovementStateMachine/conditions/jump==false" = false
+parameters/MovementStateMachine/walking_strafing/blend_position = Vector2( 0, 0 )
+parameters/OneShot/active = false
+parameters/shooting/blend_amount = 0.0
+parameters/state/current = 0
+parameters/walking_blend/blend_position = Vector2( 1.14, 0 )
+_sections_unfolded = [ "Root Motion", "Script", "parameters", "parameters/Blend2", "parameters/MovementStateMachine", "parameters/MovementStateMachine/walking_strafing", "parameters/StateMachine", "parameters/StateMachine/BlendSpace2D", "parameters/shooting", "parameters/state", "parameters/walking_blend" ]
+
+[node name="Crane" type="Spatial" parent="."]
+transform = Transform( -1, 1.81762e-08, -8.55124e-08, 0, 0.978148, 0.207912, 8.74228e-08, 0.207912, -0.978148, -0.5, 1.6, -2 )
+visible = false
+_sections_unfolded = [ "Transform" ]
+
+[node name="Camera" type="Camera" parent="Crane"]
+transform = Transform( 1, 3.55271e-15, -7.10543e-15, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 0, 0 )
+visible = false
+keep_aspect = 1
+cull_mask = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+doppler_tracking = 0
+projection = 0
+current = true
+fov = 70.0
+size = 1.0
+near = 0.05
+far = 100.0
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0 )
+shape = SubResource( 24 )
+disabled = false
+_sections_unfolded = [ "Transform", "shape" ]
+

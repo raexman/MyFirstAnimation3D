@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="CapsuleShape" id=1]
+
+margin = 0.04
+radius = 1.0
+height = 1.0
+
+[node name="Spatial" type="Spatial"]
+
+[node name="KinematicBody" type="KinematicBody" parent="."]
+input_ray_pickable = true
+input_capture_on_drag = false
+collision_layer = 1
+collision_mask = 1
+move_lock_x = false
+move_lock_y = false
+move_lock_z = false
+collision/safe_margin = 0.001
+
+[node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
+editor/display_folded = true
+shape = SubResource( 1 )
+disabled = false
+
+[node name="Skeleton" type="Skeleton" parent="KinematicBody/CollisionShape"]
+
+[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/CollisionShape/Skeleton"]
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = null
+skeleton = NodePath("..")
+
